@@ -1,0 +1,25 @@
+<!-- Angular Material Toolbar -->
+<mat-toolbar color="primary">
+    <mat-icon aria-hidden="false">people</mat-icon>Customers
+    <!-- This fills the remaining space of the current row -->
+    <span class="spacer"></span>
+    <!-- Main Navigation -->
+    <ul class="navigation">
+      <!-- Offers -->
+      <li>
+        <a mat-button 
+           routerLink="/offers" 
+           routerLinkActive="mat-accent">
+           Offers
+        </a>
+      </li>
+      <!-- Subscriptions -->
+      <li>
+        <a mat-button 
+           routerLink="/subscriptions" 
+           routerLinkActive="mat-accent">
+           Subscriptions
+        </a>
+      </li>
+    </ul>
+</mat-toolbar>

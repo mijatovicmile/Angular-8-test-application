@@ -1,0 +1,39 @@
+<!-- Angular material spinner -->
+<mat-spinner [diameter]="40" 
+             *ngIf="isLoading">
+</mat-spinner>
+<!-- Angular Material table wrapper -->
+<!-- Angular Material table wrapper -->
+<div *ngIf="!isLoading && subscriptions.length > 0" 
+     class="mat-elevation-z8">
+    <!-- Table -->
+    <table mat-table 
+           [dataSource]="subscriptions">
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef>ID</th>
+                <td mat-cell *matCellDef="let element"> 
+                    {{ element.id }} 
+                </td>
+            </ng-container>
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let element"> 
+                    {{ element.name }} 
+                </td>
+            </ng-container>
+            <!-- Type Column -->
+            <ng-container matColumnDef="type">
+                <th mat-header-cell *matHeaderCellDef> Type </th>
+                <td mat-cell *matCellDef="let element"> 
+                    {{ element.type }} 
+                </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+
+<!-- If there is no subscriptions available and if there is no error and spinner is not not active -->
+<p class="mat-body-1" *ngIf="subscriptions.length === 0 && !isLoading">There is no subscriptions available.</p>
