@@ -44,11 +44,23 @@
                   <p class="mat-body-1">There is no data available.</p>
                 </mat-footer-cell>
             </ng-container>
+            <!-- Server error -->
+            <ng-container matColumnDef="error">
+                <mat-footer-cell *matFooterCellDef colspan="6">
+                  <p class="mat-body-1">{{ errorMessage }}</p>
+                </mat-footer-cell>
+            </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             <!-- If there is no offers available and if there is no error and spinner is not not active -->
             <tr mat-row *matFooterRowDef="['noData']" [ngClass]="{'hide': !(listData != null && listData.data.length == 0 )}"></tr>
+            <!-- Server error -->
+            <tr mat-row *matFooterRowDef="['error']" [ngClass]="{'hide': listData != null}"></tr>
     </table>
     <!-- Table pagination -->
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+    <mat-paginator [class.hide]="listData == null || listData.data.length == 0" 
+                   [pageSizeOptions]="[5, 10, 25, 50]" 
+                   [pageSize]="5" 
+                   showFirstLastButtons>
+    </mat-paginator>
 </div>

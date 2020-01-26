@@ -23,6 +23,8 @@ export class CustomerSubscriptionComponent {
      */
     isLoading: boolean = true;
 
+    errorMessage: string;
+
     /**
      * Data source that accepts a client-side data array and includes 
      * native support of filtering, sorting (using MatSort), and pagination (using MatPaginator).
@@ -55,6 +57,9 @@ export class CustomerSubscriptionComponent {
                 // Stop Angular Material loading spinner
                 this.isLoading = false;
             }, error => {
+
+                this.errorMessage = error.message;
+                
                 // Stop Angular Material loading spinner if error occurs
                 this.isLoading = false;
             }

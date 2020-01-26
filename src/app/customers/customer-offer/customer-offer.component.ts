@@ -24,6 +24,8 @@ export class CustomerOfferComponent implements OnInit {
      */
     isLoading: boolean = true;
 
+    errorMessage: string;
+
 
     /**
      * Data source that accepts a client-side data array and includes 
@@ -48,6 +50,8 @@ export class CustomerOfferComponent implements OnInit {
                 // Store offers data in listData array
                 this.listData = new MatTableDataSource(transformedData);
 
+                console.log('List data', this.listData);
+
                 // Paginator
                 this.listData.paginator = this.paginator;
 
@@ -57,6 +61,9 @@ export class CustomerOfferComponent implements OnInit {
                 // Stop Angular Material loading spinner
                 this.isLoading = false;
             }, error => {
+
+                this.errorMessage = error.message;
+
                 // Stop Angular Material loading spinner if error occurs
                 this.isLoading = false;
             }

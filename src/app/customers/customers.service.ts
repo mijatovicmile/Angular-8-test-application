@@ -49,7 +49,7 @@ export class CustomersService {
      * Http get method to reach Subscriptions Restful API Endpoint and 
      * fetch customers subscription information
      */
-    getSubscriptions() {
+    getSubscriptions(): Observable<Sub[]> {
         return this.http
             .get<{subscriptions: Sub[]}>(SUBSCRIPTIONS_API)
             .pipe(
