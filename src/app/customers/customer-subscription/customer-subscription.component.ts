@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+
+// Angular Material (DataSource, Paginator, Sort)
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 
 // Customers Service
 import { CustomersService } from '../customers.service';
@@ -20,21 +23,34 @@ export class CustomerSubscriptionComponent {
      */
     isLoading: boolean = true;
 
-    // Define subscriptions property as an empty array which I will use to store lists of subscriptions
-    subscriptions: Sub[] = [];
-
-    constructor(private customersService: CustomersService) {}
+    /**
+     * Data source that accepts a client-side data array and includes 
+     * native support of filtering, sorting (using MatSort), and pagination (using MatPaginator).
+     */
+    listData: MatTableDataSource<Sub>;
+    @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+    @ViewChild(MatSort, { static: true }) sort: MatSort;
 
     // Column titles (subscription table)
     displayedColumns: string[] = ['id', 'name', 'type'];
+
+    constructor(private customersService: CustomersService) {}
+
 
     // A lifecycle hook that is called after Angular has initialized all data
     ngOnInit() {
         this.customersService.getSubscriptions()            
             // Subscribe to transformed Subscription Data
             .subscribe((subscriptionData) => {
-                // Store subscriptions data in subscriptions array    
-                this.subscriptions = subscriptionData;
+                
+                // Store subscription data in listData array
+                this.listData = new MatTableDataSource(subscriptionData);
+
+                // Paginator
+                this.listData.paginator = this.paginator;
+
+                // Sorting Data
+                this.listData.sort = this.sort;
 
                 // Stop Angular Material loading spinner
                 this.isLoading = false;

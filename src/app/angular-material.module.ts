@@ -7,6 +7,8 @@ import {
     MatIconModule,
     MatTableModule,
     MatDialogModule,
+    MatPaginatorModule,
+    MatSortModule,
     MatProgressSpinnerModule 
 } from "@angular/material";
 
@@ -17,6 +19,8 @@ import {
     MatIconModule,
     MatTableModule,
     MatDialogModule,
+    MatPaginatorModule,
+    MatSortModule,
     MatProgressSpinnerModule
   ]
 })
